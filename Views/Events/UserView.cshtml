@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Events.Models.Event>
+
+@{
+    ViewData["Title"] = "Events";
+}
+
+<h2>Available Events</h2>
+
+<form asp-action="UserView" method="get">
+    <p>
+        <input type="text" name="searchString"
+               value="@Context.Request.Query["searchString"]"
+               placeholder="Search events..." />
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </p>
+</form>
+
+<hr />
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm p-3">
+                <h4>@item.EventName</h4>
+                <p><strong>Type:</strong> @item.Type</p>
+                <p>@item.Description</p>
+                <p><strong>Date:</strong> @item.CreatedDate</p>
+            </div>
+        </div>
+    }
+</div>
